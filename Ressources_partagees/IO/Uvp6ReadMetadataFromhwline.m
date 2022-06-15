@@ -1,6 +1,7 @@
 function [sn,day,light,shutter,threshold,volume,gain,pixel,Aa,Exp,classes_limits] = Uvp6ReadMetadataFromhwline(hw_line)
 % read metadata from a hwline of a uvp6 data file
 % Picheral, 2020/04/17, Catalano 2020/11, LOV
+% camille.catalano@imev-mer.fr
 %
 % hw_line entries must be from Uvp6ReadMetalinesFromDatafile
 %

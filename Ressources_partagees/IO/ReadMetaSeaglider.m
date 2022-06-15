@@ -12,6 +12,7 @@ function [meta_data] = ReadMetaSeaglider(filepathnc)
 %   meta_data : metadata array
 %
 % camille catalano 2021 LOV
+% camille.catalano@imev-mer.fr
 %
 % MIT License
 % 

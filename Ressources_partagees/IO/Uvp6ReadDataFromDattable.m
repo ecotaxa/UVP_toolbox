@@ -17,6 +17,7 @@ function [time_data, depth_data, raw_nb, black_nb, raw_grey, image_status] = Uvp
 %       black_nb, raw_nb, raw_grey as vectorsx900
 %
 % camille catalano 11/2020 LOV
+% camille.catalano@imev-mer.fr
 %
 % MIT License
 % 

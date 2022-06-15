@@ -3,6 +3,7 @@ function [hw_line, empty_line, acq_line, taxo_line] = Uvp6ReadMetalinesFromDataf
 % file_path = [data_folder, data_filename];
 %
 % Catalano, 2021/06/08, Picheral 2021/11/15, LOV
+% camille.catalano@imev-mer.fr
 %
 % MIT License
 % 

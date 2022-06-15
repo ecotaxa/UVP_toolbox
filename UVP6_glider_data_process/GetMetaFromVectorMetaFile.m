@@ -20,6 +20,7 @@ function [lon_list, lat_list, yo_list, samples_names_list, glider_filenames_list
 %   glider_filenames_list : list of name of glider nc file
 %
 % camille catalano 11/2020 LOV
+% camille.catalano@imev-mer.fr
 %
 % MIT License
 % 

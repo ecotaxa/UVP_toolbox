@@ -12,6 +12,7 @@ function [latlon_dec] = ConvertLatLonSeaexplorer(latlon)
 %   latlon_dec : decimal latitude or longitude float
 %
 % camille catalano 2020 LOV
+% camille.catalano@imev-mer.fr
 %
 % MIT License
 % 

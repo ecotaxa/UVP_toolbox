@@ -24,6 +24,7 @@ function [Zusable] = UsableDepthLimit(depth, noise, optional_method)
 %       Zusable
 %
 % camille catalano 11/2020 LOV
+% camille.catalano@imev-mer.fr
 %
 % MIT License
 % 

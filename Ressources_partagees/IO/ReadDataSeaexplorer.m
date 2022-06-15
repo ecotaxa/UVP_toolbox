@@ -13,6 +13,7 @@ function [meta_data, data_table] = ReadDataSeaexplorer(filepathgz)
 %   data_table : fulldata array
 %
 % camille catalano 2020 LOV
+% camille.catalano@imev-mer.fr
 %
 % MIT License
 % 

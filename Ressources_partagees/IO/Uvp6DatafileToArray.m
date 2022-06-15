@@ -3,6 +3,7 @@ function [data, meta, taxo] = Uvp6DatafileToArray(file_path)
 % file_path = [data_folder, data_filename];
 %
 % camille catalano 11/2021 LOV
+% camille.catalano@imev-mer.fr
 %
 % MIT License
 % 

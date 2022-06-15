@@ -12,6 +12,7 @@ function [meta_data_folder, vector_sn] = DetectionVectorMetaFile(project_folder,
 %   vector_sn : vector name and sn
 %
 % camille catalano 11/2020 LOV
+% camille.catalano@imev-mer.fr
 %
 % MIT License
 % 
