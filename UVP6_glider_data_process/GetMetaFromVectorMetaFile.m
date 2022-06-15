@@ -19,6 +19,11 @@ function [lon_list, lat_list, yo_list, samples_names_list, glider_filenames_list
 %   samples_names_list : list of samples names
 %   glider_filenames_list : list of name of glider nc file
 %
+% camille catalano 11/2020 LOV
+%
+% MIT License
+% 
+% Copyright (c) 2020 CATALANO Camille
 
 % get list of meta files
 if strcmp(vector_type, 'SeaExplorer')

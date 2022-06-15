@@ -12,6 +12,13 @@ function [meta_data, data_table] = ReadDataSeaexplorer(filepathgz)
 %   meta_data : metadata array
 %   data_table : fulldata array
 %
+% camille catalano 2020 LOV
+%
+% MIT License
+% 
+% Copyright (c) 2020 CATALANO Camille
+
+
 filepath = gunzip(filepathgz);
 data_table = readtable(filepath{1}, 'FileType', 'text', 'Format', '%{dd/MM/uuuu HH:mm:ss.SSS}D %f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f');
 meta_data = [datenum(data_table.PLD_REALTIMECLOCK) data_table.NAV_DEPTH data_table.NAV_LATITUDE data_table.NAV_LONGITUDE];

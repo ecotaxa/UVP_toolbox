@@ -11,6 +11,11 @@ function [pathfilename] = CreateCTDfileSeaexplorer(project_folder, data_table, f
 % output :
 %   pathfilename : full path to the new CTD file(s)
 %
+% camille catalano 11/2020 LOV
+%
+% MIT License
+% 
+% Copyright (c) 2020 CATALANO Camille
 
 %% creation of the ctd table
 column_names = {'chloro fluo [mg chl m-3]', 'conductivity [ms cm-1]',...

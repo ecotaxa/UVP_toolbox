@@ -11,6 +11,13 @@ function [meta_data_folder, vector_sn] = DetectionVectorMetaFile(project_folder,
 %   meta_data_folder : full path of metadata vector folder
 %   vector_sn : vector name and sn
 %
+% camille catalano 11/2020 LOV
+%
+% MIT License
+% 
+% Copyright (c) 2020 CATALANO Camille
+
+
 if strcmp(vector_type, 'SeaExplorer')
     list_in_doc = dir(fullfile(project_folder, 'doc', 'SEA*'));
     if isempty(list_in_doc)

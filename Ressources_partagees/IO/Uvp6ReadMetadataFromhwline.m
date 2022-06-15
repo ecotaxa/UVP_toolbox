@@ -1,6 +1,6 @@
 function [sn,day,light,shutter,threshold,volume,gain,pixel,Aa,Exp,classes_limits] = Uvp6ReadMetadataFromhwline(hw_line)
 % read metadata from a hwline of a uvp6 data file
-% Picheral, 2020/04/17
+% Picheral, 2020/04/17, Catalano 2020/11, LOV
 %
 % hw_line entries must be from Uvp6ReadMetalinesFromDatafile
 %
@@ -10,6 +10,10 @@ function [sn,day,light,shutter,threshold,volume,gain,pixel,Aa,Exp,classes_limits
 %   outputs:
 %       sn,day,light,shutter,threshold,volume,gain,pixel,Aa,Exp,classes_limits
 %
+%
+% MIT License
+% 
+% Copyright (c) 2020 CATALANO Camille
 
 %% splited hw line
 splited_hwline = strsplit(hw_line,{',',';'}, 'CollapseDelimiters', false);

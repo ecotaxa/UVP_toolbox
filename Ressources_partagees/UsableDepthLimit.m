@@ -23,6 +23,11 @@ function [Zusable] = UsableDepthLimit(depth, noise, optional_method)
 %   outputs:
 %       Zusable
 %
+% camille catalano 11/2020 LOV
+%
+% MIT License
+% 
+% Copyright (c) 2020 CATALANO Camille
 
 %% parameters
 Zlim = 80;
