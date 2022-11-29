@@ -2,12 +2,7 @@ function [hw_line, empty_line, acq_line, taxo_line] = Uvp6ReadMetalinesFromDataf
 % read meta data lines from data files
 % file_path = [data_folder, data_filename];
 %
-% Catalano, 2021/06/08, Picheral 2021/11/15, LOV
-% camille.catalano@imev-mer.fr
-%
-% MIT License
-% 
-% Copyright (c) 2021 CATALANO Camille
+% Catalano, 2021/06/08, Picheral 2021/11/15
 
 % open files
 data_file = fopen(file_path,'r');

@@ -29,6 +29,7 @@
 % The nc files must be located directly in it S*6904139_###.nc where 
 % 6904139 is the WMO number and ### the number of the profile.
 % The file format type is 'Argo-3.1 CF-1.6 A.14'
+% from https://dataselection.euro-argo.eu/ NetCDF Argo original
 % Merge sequences rules : one sequence per ascent, one parking sequence
 % between two ascent
 % 
@@ -254,7 +255,11 @@ for seq_nb = 1:seq_nb_max
         lat_min = 0;
         lat_deg = lat_deg + 1;
     end
-    lat = [num2str(lat_deg * signe) '°' num2str(lat_min, '%02.f') ' ' num2str(lat_sec, '%02.f')];
+    if signe == -1
+        lat = ['-' num2str(lat_deg) '°' num2str(lat_min, '%02.f') ' ' num2str(lat_sec, '%02.f')];
+    else
+        lat = [num2str(lat_deg) '°' num2str(lat_min, '%02.f') ' ' num2str(lat_sec, '%02.f')];
+    end
     % lon format
     signe = sign(lon_list(seq_nb));
     lon_deg = fix(lon_list(seq_nb) * signe);
@@ -268,9 +273,13 @@ for seq_nb = 1:seq_nb_max
         lon_min = 0;
         lon_deg = lon_deg + 1;
     end
-    lon = [num2str(lon_deg * signe) '°' num2str(lon_min, '%02.f') ' ' num2str(lon_sec, '%02.f')];
+    if signe == -1
+        lon = ['-' num2str(lon_deg) '°' num2str(lon_min, '%02.f') ' ' num2str(lon_sec, '%02.f')];
+    else
+        lon = [num2str(lon_deg) '°' num2str(lon_min, '%02.f') ' ' num2str(lon_sec, '%02.f')];
+    end
     % ctd files names
-    if strcmp(vector_type, 'SeaExplorer')
+    if strcmp(vector_type, 'SeaExplorer') || strcmp(vector_type, 'float')
         ctd_filesnames = [char(samples_names_list(seq_nb)) '.ctd'];
     else
         ctd_filesnames = '';

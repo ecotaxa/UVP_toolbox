@@ -14,6 +14,10 @@ function [meta_data, data_table] = ReadMetaFloat(filepathnc)
 %
 
 depth = ncread(filepathnc, 'PRES_ADJUSTED');
+if prod(isnan(depth)) % test if pres_adjusted is empty
+    depth = ncread(filepathnc, 'PRES');
+end
+
 juld = ncread(filepathnc, 'JULD');
 juld = depth*0 + juld;
 t0 = datenum('1950-01-01T00:00:00', 'yyyy-mm-ddTHH:MM:SS');

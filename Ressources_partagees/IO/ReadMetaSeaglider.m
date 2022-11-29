@@ -11,12 +11,6 @@ function [meta_data] = ReadMetaSeaglider(filepathnc)
 % output :
 %   meta_data : metadata array
 %
-% camille catalano 2021 LOV
-% camille.catalano@imev-mer.fr
-%
-% MIT License
-% 
-% Copyright (c) 2021 CATALANO Camille
 
 time = ncread(filepathnc, 'time');
 time = datenum(datetime(time, 'ConvertFrom', 'posixtime'));
