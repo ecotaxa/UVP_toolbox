@@ -55,7 +55,7 @@ disp('')
 %parking_pressure_diff : pressure difference to identify parkings
 parking_pressure_diff = 70; % with margins
 %deep_black_limit : depth where the black is considered only from the instrument
-deep_black_limit = 60; %80m to be sure
+deep_black_limit = 80; %80m to be sure
 
 
 % select the project
