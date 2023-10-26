@@ -55,7 +55,7 @@ for meta_nb = 1:length(list_of_vector_meta)
     if strcmp(vector_type, 'SeaExplorer')
         [meta, data] = ReadDataSeaexplorer(fullfile(meta_folder_ccu, list_of_vector_meta(meta_nb).name));
     elseif strcmp(vector_type, 'SeaGlider')
-        meta = ReadMetaSeaglider(fullfile(meta_folder_sg, list_of_vector_meta(meta_nb).name));
+        [meta, data] = ReadMetaSeaglider(fullfile(meta_folder_sg, list_of_vector_meta(meta_nb).name));
     elseif strcmp(vector_type, 'float')
         [meta, data] = ReadMetaFloat(fullfile(meta_folder_fl, list_of_vector_meta(meta_nb).name));
     end
@@ -93,7 +93,6 @@ for meta_nb = 1:length(list_of_vector_meta)
                yo_nb = yo_nb(end-1);
                yo_list(seq_nb) = str2double(yo_nb);
                samples_names_list(seq_nb) = ['Yo_' num2str(yo_list(seq_nb), '%04.f') char(profile_type_list(seq_nb)) '_' cruise];
-               [~] = CreateCTDfile(fullfile(meta_data_folder, '..', '..'), data, strcat(samples_names_list(seq_nb), '.csv'), vector_type);
            elseif strcmp(vector_type, 'SeaGlider')
                lat_list(seq_nb) = meta(aa(end), 3);
                lon_list(seq_nb) = meta(aa(end), 4);
@@ -119,8 +118,8 @@ for meta_nb = 1:length(list_of_vector_meta)
                    yo_nb = yo_nb + 1;
                end
                samples_names_list(seq_nb) = [num2str(yo_list(seq_nb), '%04.f') char(profile_type_list(seq_nb)) '_' cruise];
-               [~] = CreateCTDfile(fullfile(meta_data_folder, '..', '..'), data, strcat(samples_names_list(seq_nb), '.csv'), vector_type);
            end
+          [~] = CreateCTDfile(fullfile(meta_data_folder, '..', '..'), data, strcat(samples_names_list(seq_nb), '.csv'), vector_type);
            vector_filenames_list(seq_nb) = list_of_vector_meta(meta_nb).name;
            seq_nb = seq_nb + 1;
         elseif (time_to_find < meta(1,1))

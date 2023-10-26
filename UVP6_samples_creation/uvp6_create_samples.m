@@ -2,6 +2,10 @@
 % Create the sample file for all sequences
 % For SeaExplorer and for SeaGlider
 %
+% !!! WARNINGS !!!
+% !!! the code is case sensitive !!!
+% !!! Close UVPapp before using the code !!!
+%
 % ----- SeaExplorer project -----
 % The project must contain "sea" in the name.
 % The meta data are extracted from the sequence and a nav file located in
@@ -18,6 +22,9 @@
 % The meta data folder must be called "SG###_nc_files", with ### the sn of
 % the glider.
 % The files in it are called "p[sn]####.nc", with #### the nb of the yo.
+% There must be placed in an other folder (called nc_files for example).
+% The only file remaining that will be used is a unique summary nc file of
+% type : sg644_SG644_20230817_PF_timeseries.nc
 % 
 % ----- BGC float project -----
 % For recovered BGC float uvp6 data.
@@ -32,6 +39,18 @@
 % from https://dataselection.euro-argo.eu/ NetCDF Argo original
 % Merge sequences rules : one sequence per ascent, one parking sequence
 % between two ascent
+%
+%
+% -- CTD files --
+% CTD files are created with data from the vector
+% Due to a bug from ecopart, move those files to a ctd_data_cnv folder in
+% the project in order to import them
+% For SeaGlider, the ctd files are all the same
+%
+%
+% -- Noise detection --
+% Noise detection is done on the black 2pix
+%
 % 
 % use Mapping Toolbox 
 %
@@ -55,7 +74,7 @@ disp('')
 %parking_pressure_diff : pressure difference to identify parkings
 parking_pressure_diff = 70; % with margins
 %deep_black_limit : depth where the black is considered only from the instrument
-deep_black_limit = 80; %80m to be sure
+deep_black_limit = 60; %80m to be sure
 
 
 % select the project
@@ -182,12 +201,17 @@ for seq_nb = 1:seq_nb_max
     sample_type_list(seq_nb) = sample_type;
     
     % detection auto first image by using default method
+    %{
+    % code for using 1pix black
     % test if black 1pix is all 0
     if any(black_nb(:,3))
         first_black = black_nb(:,3);
     else
         first_black = black_nb(:,4);
     end
+    %}
+    % Use black 2pix instead
+    first_black = black_nb(:,4);
     % detection auto first image by using default method
     [Zusable] = UsableDepthLimit(black_nb(:,1), first_black, deep_black_limit);
 
@@ -283,11 +307,7 @@ for seq_nb = 1:seq_nb_max
         lon = [num2str(lon_deg) '°' num2str(lon_min, '%02.f') ' ' num2str(lon_sec, '%02.f')];
     end
     % ctd files names
-    if strcmp(vector_type, 'SeaExplorer') || strcmp(vector_type, 'float')
-        ctd_filesnames = [char(samples_names_list(seq_nb)) '.ctd'];
-    else
-        ctd_filesnames = '';
-    end
+    ctd_filesnames = [char(samples_names_list(seq_nb)) '.ctd'];
     % line to write
     seq_line = [cruise ';' vector_sn ';' list_of_sequences(seq_nb).name ';' char(samples_names_list(seq_nb)) ';'...
         'nan' ';' ctd_filesnames ';' lat ';' lon ';'...

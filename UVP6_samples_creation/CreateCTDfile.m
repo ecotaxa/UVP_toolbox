@@ -7,7 +7,7 @@ function [pathfilename] = CreateCTDfile(project_folder, data_table, filename, ve
 %   project_folder : full path of the project
 %   data_table : data_table from the vector
 %   filename : name of the ctd file to write (str)
-%   vector_type : 'SeaExplorer' or 'float'
+%   vector_type : 'SeaExplorer', 'SeaGlider' or 'float'
 %
 % output :
 %   pathfilename : full path to the new CTD file(s)
@@ -29,6 +29,8 @@ if strcmp(vector_type, 'float')
     ctd_table = FillCTDtableFloat(ctd_table, data_table);
 elseif strcmp(vector_type, 'SeaExplorer')
     ctd_table = FillCTDtableSeaexplorer(ctd_table, data_table);
+elseif strcmp(vector_type, 'SeaGlider')
+    ctd_table = FillCTDtableSeaglider(ctd_table, data_table);
 end
     
     
