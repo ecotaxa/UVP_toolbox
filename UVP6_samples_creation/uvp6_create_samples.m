@@ -152,7 +152,7 @@ list_of_sequences = list_of_sequences(idx);
 
 % get metadata from each sequence data file
 disp('Get data from all sequences...')
-disp(['The instrumental noise is evaluated under ' deep_black_limit 'm'])
+disp(['The instrumental noise is evaluated under ' num2str(deep_black_limit) 'm'])
 seq_nb_max = length(list_of_sequences);
 aa_list = zeros(1, seq_nb_max);
 exp_list = zeros(1, seq_nb_max);

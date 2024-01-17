@@ -13,7 +13,9 @@ function [meta_data, data_table] = ReadDataSeaexplorer(filepathgz)
 %   data_table : fulldata array
 %
 filepath = gunzip(filepathgz);
-data_table = readtable(filepath{1}, 'FileType', 'text', 'Format', '%{dd/MM/uuuu HH:mm:ss.SSS}D %f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f');
+%data_table = readtable(filepath{1}, 'FileType', 'text', 'Format', '%{dd/MM/uuuu HH:mm:ss.SSS}D %f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f');
+data_table = readtable(filepath{1}, 'FileType', 'text');
+data_table = convertvars(data_table, 'PLD_REALTIMECLOCK', 'datetime');
 meta_data = [datenum(data_table.PLD_REALTIMECLOCK) data_table.NAV_DEPTH data_table.NAV_LATITUDE data_table.NAV_LONGITUDE];
 delete(filepath{1});
 end
