@@ -1,6 +1,6 @@
 %% Create the sample file of a project
 % Create the sample file for all sequences
-% For SeaExplorer and for SeaGlider
+% For SeaExplorer, for SeaGlider and for BGC-argo float
 %
 % !!! WARNINGS !!!
 % !!! the code is case sensitive !!!
@@ -14,6 +14,9 @@
 % "SEA###*".
 % The files must be located directly in ccu/logs/*raw*.#.gz, with # the nb of the
 % yo.
+% example:
+% uvp6_sn000003lp_2021_sea002_m495\doc\SEA002_m495_full\ccu\logs\sea002.495.pld1.raw.7.gz
+%
 %
 % ----- SeaGlider project -----
 % The project must contain "SG" in the name.
@@ -25,7 +28,10 @@
 % There must be placed in an other folder (called nc_files for example).
 % The only file remaining that will be used is a unique summary nc file of
 % type : sg644_SG644_20230817_PF_timeseries.nc
-% 
+% example:
+% uvp6_sn000006lp_2021_SG150_PolarFront\doc\SG150_PolarFront_arctos\sg150_20210516_150_019_timeseries.nc
+%
+%
 % ----- BGC float project -----
 % For recovered BGC float uvp6 data.
 % The project must contain the WMO number in the name (and so "WMO").
@@ -34,11 +40,13 @@
 % WMOnumber "float_*_#######"
 % This folder must be placed in the doc folder of the project.
 % The nc files must be located directly in it S*6904139_###.nc where 
-% 6904139 is the WMO number and ### the number of the profile.
-% The file format type is 'Argo-3.1 CF-1.6 A.14'
+% 6904139 is the WMO number and ### the number of the profile. The files
+% used are the individual profile files 
 % from https://dataselection.euro-argo.eu/ NetCDF Argo original
 % Merge sequences rules : one sequence per ascent, one parking sequence
 % between two ascent
+% example:
+% uvp6_sn000110lp_2021_WMO6904139_recovery\doc\float_meta_WMO6904139\SD6904139_007.nc
 %
 %
 % -- CTD files --
