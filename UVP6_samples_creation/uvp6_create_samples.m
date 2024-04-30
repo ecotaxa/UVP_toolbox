@@ -6,6 +6,12 @@
 % !!! the code is case sensitive !!!
 % !!! Close UVPapp before using the code !!!
 %
+% ------ ALL platforms ----------
+% MERGE the sequences first using UVPapp (if necessary).
+% For floats, the profiles must be merged first and the parking then
+% For gliders, there is no parking and there might not be any merging need
+%
+%
 % ----- SeaExplorer project -----
 % The project must contain "sea" in the name.
 % The meta data are extracted from the sequence and a nav file located in
@@ -32,16 +38,19 @@
 % uvp6_sn000006lp_2021_SG150_PolarFront\doc\SG150_PolarFront_arctos\sg150_20210516_150_019_timeseries.nc
 %
 %
-% ----- BGC float project -----
+% ----- BGC-Argo float project -----
 % For recovered BGC float uvp6 data.
-% The project must contain the WMO number in the name (and so "WMO").
+% The project name must contain the WMO number in the name 
+% (uvp6_sn000110lp_YYYY_WMO6904139_recovery). YYYY is the year of the
+% deployment of the float. Recovery indicates that the project contains
+% recovered data.
 % The metadata are extraceted from the sequence and netcdf argo files (one
 % per profile) present in a folder starting by float and ending by the 
 % WMOnumber "float_*_#######"
 % This folder must be placed in the doc folder of the project.
-% The nc files must be located directly in it S*6904139_###.nc where 
-% 6904139 is the WMO number and ### the number of the profile. The files
-% used are the individual profile files 
+% The synthetic profile files must be located directly in it. The filenames are S*6904139_###.nc where 
+% 6904139 is the WMO number and ### the number of the profile. The S prefix indicates that they are synthetic files. 
+% The files used are the individual profile files 
 % from https://dataselection.euro-argo.eu/ NetCDF Argo original
 % Merge sequences rules : one sequence per ascent, one parking sequence
 % between two ascent
@@ -50,8 +59,8 @@
 %
 %
 % -- CTD files --
-% CTD files are created with data from the vector
-% Due to a bug from ecopart, move those files to a ctd_data_cnv folder in
+% The CTD files for EcoPART are created using the data from the vector
+% Due to a bug from EcoPART, after the process, move those files into a new ctd_data_cnv folder in
 % the project in order to import them
 % For SeaGlider, the ctd files are all the same
 %
@@ -279,46 +288,47 @@ fprintf(sample_file,'%s\n',line);
 % one sample by sequence
 for seq_nb = 1:seq_nb_max
     % lat format
-    signe = sign(lat_list(seq_nb));
-    lat_deg = fix(lat_list(seq_nb) * signe);
-    lat_min = fix(rem(lat_list(seq_nb) * signe,1)*60);
-    lat_sec = round(rem(rem(lat_list(seq_nb) * signe,1)*60,1)*60);
-    if lat_sec == 60
-        lat_sec = 0;
-        lat_min = lat_min + 1;
-    end
-    if lat_min == 60
-        lat_min = 0;
-        lat_deg = lat_deg + 1;
-    end
-    if signe == -1
-        lat = ['-' num2str(lat_deg) '°' num2str(lat_min, '%02.f') ' ' num2str(lat_sec, '%02.f')];
-    else
-        lat = [num2str(lat_deg) '°' num2str(lat_min, '%02.f') ' ' num2str(lat_sec, '%02.f')];
-    end
-    % lon format
-    signe = sign(lon_list(seq_nb));
-    lon_deg = fix(lon_list(seq_nb) * signe);
-    lon_min = fix(rem(lon_list(seq_nb) * signe,1)*60);
-    lon_sec = round(rem(rem(lon_list(seq_nb) * signe,1)*60,1)*60);
-    if lon_sec == 60
-        lon_sec = 0;
-        lon_min = lon_min + 1;
-    end
-    if lon_min == 60
-        lon_min = 0;
-        lon_deg = lon_deg + 1;
-    end
-    if signe == -1
-        lon = ['-' num2str(lon_deg) '°' num2str(lon_min, '%02.f') ' ' num2str(lon_sec, '%02.f')];
-    else
-        lon = [num2str(lon_deg) '°' num2str(lon_min, '%02.f') ' ' num2str(lon_sec, '%02.f')];
-    end
+    % signe = sign(lat_list(seq_nb));
+    % lat_deg = fix(lat_list(seq_nb) * signe);
+    % lat_min = fix(rem(lat_list(seq_nb) * signe,1)*60);
+    % lat_sec = round(rem(rem(lat_list(seq_nb) * signe,1)*60,1)*60);
+    % if lat_sec == 60
+    %     lat_sec = 0;
+    %     lat_min = lat_min + 1;
+    % end
+    % if lat_min == 60
+    %     lat_min = 0;
+    %     lat_deg = lat_deg + 1;
+    % end
+    % if signe == -1
+    %     lat = ['-' num2str(lat_deg) '°' num2str(lat_min, '%02.f') ' ' num2str(lat_sec, '%02.f')];
+    % else
+    %     lat = [num2str(lat_deg) '°' num2str(lat_min, '%02.f') ' ' num2str(lat_sec, '%02.f')];
+    % end
+    % % lon format
+    % signe = sign(lon_list(seq_nb));
+    % lon_deg = fix(lon_list(seq_nb) * signe);
+    % lon_min = fix(rem(lon_list(seq_nb) * signe,1)*60);
+    % lon_sec = round(rem(rem(lon_list(seq_nb) * signe,1)*60,1)*60);
+    % if lon_sec == 60
+    %     lon_sec = 0;
+    %     lon_min = lon_min + 1;
+    % end
+    % if lon_min == 60
+    %     lon_min = 0;
+    %     lon_deg = lon_deg + 1;
+    % end
+    % if signe == -1
+    %     lon = ['-' num2str(lon_deg) '°' num2str(lon_min, '%02.f') ' ' num2str(lon_sec, '%02.f')];
+    % else
+    %     lon = [num2str(lon_deg) '°' num2str(lon_min, '%02.f') ' ' num2str(lon_sec, '%02.f')];
+    % end
+    
     % ctd files names
     ctd_filesnames = [char(samples_names_list(seq_nb)) '.ctd'];
     % line to write
     seq_line = [cruise ';' vector_sn ';' list_of_sequences(seq_nb).name ';' char(samples_names_list(seq_nb)) ';'...
-        'nan' ';' ctd_filesnames ';' lat ';' lon ';'...
+        'nan' ';' ctd_filesnames ';' num2str(lat_list(seq_nb)) ';' num2str(lon_list(seq_nb)) ';'...
         num2str(start_idx_list(seq_nb)) ';' num2str(volimage_list(seq_nb)) ';' num2str(aa_list(seq_nb)) ';' num2str(exp_list(seq_nb)) ';'...
         '' ';' 'nan' ';' 'nan' ';' 'nan' ';'...
         'nan' ';' '' ';' num2str(end_idx_list(seq_nb)) ';' '' ';' ...
