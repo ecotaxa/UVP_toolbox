@@ -37,7 +37,7 @@ image_status =  NaN*zeros(n,1);
 % data = 3
 
 for h=1:n
-    if h/500==floor(h/500)
+    if h/5000==floor(h/5000)
         disp(num2str(h))
     end
 
